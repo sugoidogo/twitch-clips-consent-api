@@ -1,0 +1,38 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "twitch-clips-consent",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-09-22",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": "./public"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"placement": {
+		"mode": "smart"
+	},
+	"r2_buckets": [
+		{
+			"binding": "tokens",
+			"bucket_name": "twitch-clips-consent-tokens",
+			"jurisdiction": "eu",
+		}
+	],
+	"vars": {
+		"CLIENT_ID": "72wtxvzs6erokrj33lk105whmoo381",
+	},
+	"routes": [
+		{
+			"pattern": "clippy.sugoidogo.com",
+			"custom_domain": true
+		}
+	],
+}
