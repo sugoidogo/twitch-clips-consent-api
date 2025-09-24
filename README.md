@@ -1,11 +1,42 @@
 # Twitch Clips Consent API
-This is a Cloudflare Worker that can be deployed completely for free (up to 100k requests per day) to allow clip players to gain access to mp4 urls by acting as a middleman for the [Get Clips Download](https://dev.twitch.tv/docs/api/reference/#get-clips-download) API.
+This is a simple API to allow clip players to gain access to mp4 urls by acting as a middleman for the [Get Clips Download](https://dev.twitch.tv/docs/api/reference/#get-clips-download) API.
 
-## Usage
+## Deploying
 
-At the time of writing, the button below will prompt you for everything required except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable. You should use the same client id and secret as the clip player that will be using this api.
+### Cloudflare Workers
+
+At the time of writing, the button below will prompt you for everything required to deploy this API to Cloudflare Workers except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable. You should use the same client id and secret as the clip player that will be using this api.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2Fsugoidogo%2Ftwitch-clips-consent-api)
+
+### Docker
+
+This worker is also availible as a docker container at [ghcr.io/sugoidogo/twitch-clips-consent-api](https://github.com/sugoidogo/twitch-clips-consent-api/pkgs/container/twitch-clips-consent-api).
+It listens on HTTP port 8080 and requires the `CLIENT_ID` and `CLIENT_SECRET` environment variables to match those of the client that will be using this API.
+It also requires mounts for `/worker/cache`, `/worker/kv`, `/worker/d1`, and `/worker/r2`. 
+The r2 mount is the only one actually used, but the selflare runtime requires all of them regardless.
+
+<details><summary>docker-compose.yml</summary>
+
+```yaml
+services:
+    twitch-clips-consent-api:
+        image: ghcr.io/sugoidogo/twitch-clips-consent-api
+        volumes:
+            - ./.storage/cache:/worker/cache
+            - ./.storage/kv:/worker/kv
+            - ./.storage/d1:/worker/d1
+            - ./.storage/r2:/worker/r2
+        ports:
+            - "8080:8080"
+        environment:
+            - CLIENT_ID=CHANGEME
+            - CLIENT_SECRET=HIDEME
+```
+
+</details>
+
+## Usage
 
 ### `/consent`
 Before requesting a clip download, the broadcaster must authorize your client to download their clips, which is done via the `/consent` endpoint. For example, Clippy (the clip player this was developed for) will send a chat message with the link https://clippy.sugoidogo.com/consent, which then redirects the broadcaster to a page like the following:
