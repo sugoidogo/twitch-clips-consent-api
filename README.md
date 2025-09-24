@@ -1,5 +1,5 @@
 # Twitch Clips Consent API
-This is a Cloudflare Worker that can be deployed completely for free to allow clip players to gain access to mp4 urls by acting as a middleman for the [Get Clips Download](https://dev.twitch.tv/docs/api/reference/#get-clips-download) API.
+This is a Cloudflare Worker that can be deployed completely for free (up to 100k requests) to allow clip players to gain access to mp4 urls by acting as a middleman for the [Get Clips Download](https://dev.twitch.tv/docs/api/reference/#get-clips-download) API.
 
 ## Usage
 
