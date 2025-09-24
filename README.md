@@ -3,7 +3,7 @@ This is a Cloudflare Worker that can be deployed completely for free to allow cl
 
 ## Usage
 
-At the time of writing, the button below will prompt you for everything required except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable.
+At the time of writing, the button below will prompt you for everything required except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable. You should use the same client id and secret as the clip player that will be using this api.
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2Fsugoidogo%2Ftwitch-clips-consent-api)
 
