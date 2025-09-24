@@ -53,9 +53,9 @@ This endpoint requires the same Authorization header as the official Twitch API,
 
 `broadcaster_id`: the id of the broadcaster who owns the clip you want to download
 
-`clip_id`: the id of the clip you want to download
+`clip_id`: the id of the clip you want to download, can be provided multiple times
 
-A typical request could look like this: `/clips?broadcaster_id=123456&clip_id=YourMomStinks-asdfghjkl`
+A typical request could look like this: `/clip?broadcaster_id=123456&clip_id=YourMomStinks-asdfghjkl`
 
 If the broadcaster hasn't previously authorized this client, you'll get a response like this:
 
