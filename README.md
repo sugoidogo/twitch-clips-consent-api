@@ -3,6 +3,10 @@ This is a Cloudflare Worker that can be deployed completely for free to allow cl
 
 ## Usage
 
+At the time of writing, the button below will prompt you for everything required except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable.
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2Fsugoidogo%2Ftwitch-clips-consent-api)
+
 ### `/consent`
 Before requesting a clip download, the broadcaster must authorize your client to download their clips, which is done via the `/consent` endpoint. For example, Clippy (the clip player this was developed for) will send a chat message with the link https://clippy.sugoidogo.com/consent, which then redirects the broadcaster to a page like the following:
 
