@@ -7,6 +7,9 @@ This is a simple API to allow clip players to gain access to mp4 urls by acting 
 
 At the time of writing, the button below will prompt you for everything required to deploy this API to Cloudflare Workers except for the subdomain to assign the worker to and the `CLIENT_SECRET` variable, which must be added as a secret to your worker, not as a standard environment variable. You should use the same client id and secret as the clip player that will be using this api.
 
+After deploying, I also recommend you create a page rule to redirect the bare (no query parameters) `/consent` endpoint to the url which that endpoint would redirect you to, in order to cut down on worker invocations.
+I recommend you use the 302 status code so you can update said url as neccessary, although it shouldn't change unless you change your client id or the twitch API changes required scopes.
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https%3A%2F%2Fgithub.com%2Fsugoidogo%2Ftwitch-clips-consent-api)
 
 ### Docker
@@ -32,6 +35,30 @@ services:
         environment:
             - CLIENT_ID=CHANGEME
             - CLIENT_SECRET=HIDEME
+```
+
+</details>
+
+## Twurple Module
+
+This API also provides a Twurple module for easy integration if you're already using the Twurple javascript library.
+
+<details><summary>javascript</summary>
+
+```javascript
+import ClipConsent from 'https://your.domain.tld/twurple-clips-consent.js'
+
+const clipConsent=new ClipConsent(twurpleAuthProvider)
+
+// returns short url that redirects to auth page
+clipConsent.getShortConsentURL()
+
+// returns long url that takes you directly to auth page
+clipConsent.getLongConsentURL()
+
+// returns the deserialized json response from twitch,
+// or throws with the `Response` object as the cause
+clipsConsent.getClipDownloads(broadcaster_id=123456,clip_id='YourMomStinks-asdfghjkl')
 ```
 
 </details>
