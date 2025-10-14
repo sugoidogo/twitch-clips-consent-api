@@ -3,12 +3,12 @@
 	"version": "1.0.1",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev --ip 0.0.0.0",
-		"start": "wrangler dev --ip 0.0.0.0",
+		"deploy": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 && wrangler deploy",
+		"dev": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 --watch && wrangler dev --ip 0.0.0.0 & kill %1",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
+		"@twurple/auth": "^7.4.0",
 		"selflare": "^1.1.2",
 		"typescript": "^5.5.2",
 		"wrangler": "^4.38.0"
