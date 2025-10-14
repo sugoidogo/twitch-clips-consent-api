@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"deploy": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 && wrangler deploy",
-		"dev": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 --watch && wrangler dev --ip 0.0.0.0 & kill %1",
+		"dev": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 --watch & wrangler dev --ip 0.0.0.0 && kill %1",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
