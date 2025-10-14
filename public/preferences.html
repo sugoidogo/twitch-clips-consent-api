@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
+    <script type="module" src="preferences.js"></script>
+</head>
+
+<body>
+    <h1>Thank you for your consent</h1>
+    <span id="status">Loading, please wait...</span>
+    <br><br>
+    <form name="clip_filters">
+        <label>
+            <input type="checkbox" name="is_featured">
+            Featured clips only
+        </label>
+        <br>
+        <label>
+            Clips starting after
+            <input type="datetime-local" name="started_at">
+        </label>
+        <br>
+        <label>
+            Clips ending before
+            <input type="datetime-local" name="ended_at">
+        </label>
+        <br>
+        <input type="submit">
+    </form>
+    <button>Test your settings</button>
+    <br>
+    <span id="test"></span>
+</body>

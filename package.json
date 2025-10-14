@@ -4,13 +4,15 @@
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
-		"dev": "wrangler dev --ip 0.0.0.0",
-		"start": "wrangler dev --ip 0.0.0.0",
-		"cf-typegen": "wrangler types"
+		"dev": "esbuild public/*.ts --minify --sourcemap=inline --bundle --format=esm --outdir=public --watch=forever & wrangler dev --ip 0.0.0.0 && kill %1",
+		"cf-typegen": "wrangler types",
+		"build": "esbuild public/*.ts --minify --sourcemap=inline --bundle --format=esm --outdir=public"
 	},
 	"devDependencies": {
 		"selflare": "^1.1.2",
 		"typescript": "^5.5.2",
-		"wrangler": "^4.38.0"
+		"wrangler": "^4.38.0",
+		"@twurple/auth": "^7.4.0",
+		"ts-twitch-api": "^0.2.6"
 	}
 }

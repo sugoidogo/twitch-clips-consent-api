@@ -39,10 +39,6 @@
 		"types": [
 			"./worker-configuration.d.ts"
 		],
-		
-	/* My JSONObject interface doesn't let me do `user['data'][0]['id']` without throwing an error. 
-	 * Would rather fix the interface than use this, but I don't know enough about typescript/javascript for that. */
-		"noImplicitAny": false, 
 	},
 	"exclude": ["test"],
 	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
