@@ -125,7 +125,15 @@ export default {
 					'body': body,
 				})
 				if (response.status != 200) {
-					return new Response(response.body, { status: response.status, headers: responseHeaders })
+					const auth_uri = new URL(url)
+					auth_uri.protocol = 'https'
+					auth_uri.search = ''
+					auth_uri.pathname = 'consent'
+					responseHeaders.append('content-type', 'application/json')
+					return new Response(JSON.stringify({
+						'auth_uri': auth_uri.href,
+						'error': 'broadcaster has revoked authorization'
+					}), { status: 403, headers: responseHeaders })
 				}
 				const tokens: JSONObject = await response.json()
 				const access_token = tokens['access_token']
