@@ -3,9 +3,9 @@
 	"version": "1.0.1",
 	"private": true,
 	"scripts": {
-		"deploy": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 && wrangler deploy",
-		"dev": "esbuild public/*.ts --bundle --minify --sourcemap=inline --format=esm --outdir=public --target=es2020 --watch & wrangler dev --ip 0.0.0.0 && kill %1",
-		"cf-typegen": "wrangler types"
+		"deploy": "node scripts/build.mjs && wrangler deploy",
+		"dev": "node scripts/serve-dev.mjs",
+		"update": "npm update && wrangler types"
 	},
 	"devDependencies": {
 		"@twurple/auth": "^7.4.0",
