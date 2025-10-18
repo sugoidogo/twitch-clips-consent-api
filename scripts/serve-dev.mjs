@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import esbuild from 'esbuild'
-import config from './esbuild-config.mjs'
+import config from './esbuild.json' with { type: 'json' }
 import {spawnSync} from 'node:child_process'
 
 const build = await esbuild.context(config)
